@@ -1,4 +1,35 @@
-# Projeto exemplo para testes de serviço utilizando cypress
+# Cypress + Joi
+
+Projeto de exemplo para realização de testes de serviço utilizando o Cypress + Joi
+
+## Ferramentas utilizadas:
+- [VSCode](https://code.visualstudio.com/ "VSCode")
+- [Cypress](https://www.npmjs.com/package/cypress "Cypress")
+- [Joi](https://www.npmjs.com/package/@hapi/joi "Joi")
+
+## Estrutura de pastas
+
+📦cypress-api-testing
+ ┣ 📂cypress
+ ┃ ┣ 📂fixtures
+ ┃ ┃ ┗ 📜example.json
+ ┃ ┣ 📂integration
+ ┃ ┃ ┗ 📂services
+ ┃ ┃ ┃ ┣ 📂contracts
+ ┃ ┃ ┃ ┃ ┗ 📜ability.contract.js
+ ┃ ┃ ┃ ┗ 📂tests
+ ┃ ┃ ┃ ┃ ┣ 📜Ability.spec.js
+ ┃ ┃ ┃ ┃ ┗ 📜Pokemon.spec.js
+ ┃ ┣ 📂plugins
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┗ 📂support
+ ┃ ┃ ┣ 📜commands.js
+ ┃ ┃ ┗ 📜index.js
+ ┣ 📜README.md
+ ┣ 📜cypress.json
+ ┗ 📜package.json
+
+## Tutorial, Instalação e execução
 
 ### Executar este projeto em sua maquina
 
@@ -20,7 +51,7 @@ npm init -y
 * Instalar a última versão do cypress, Joi e joiAssert:
 ```
 npm i cypress
-npm i joi
+npm i @hapi/joi
 npm i joi-assert
 ```
 
@@ -28,9 +59,6 @@ npm i joi-assert
 ```
 cypress open 
 ```
-
-
-
 
 ### Trick
 

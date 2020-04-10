@@ -1,7 +1,3 @@
-import Joi from 'joi';
-import joiAssert from 'joi-assert';
-
-
 describe('All Pokemon Tests', () => {
     beforeEach(() => {
         cy.request('GET','/pokemon').as('pokemon')
@@ -39,7 +35,6 @@ describe('Pikachu Tests', () => {
 
     it('Validate status code - 200', () => {
         cy.get('@pikachu').should((response) => {
-            console.log(response.body)
             expect(response.status).to.eq(200)
         })
     })

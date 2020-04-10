@@ -1,17 +1,16 @@
 {
   "name": "cypress-api-testing",
   "version": "1.0.0",
-  "description": "",
+  "description": "Teste de api utilizando Cypress + Joi",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Maximiliano Alves da Cruz",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^4.3.0",
-    "joi": "^14.3.1",
-    "joi-assert": "0.0.3"
+    "@hapi/joi": "^17.1.1",
+    "cypress": "^4.3.0"
   }
 }
