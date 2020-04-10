@@ -52,7 +52,6 @@ npm init -y
 ```
 npm i cypress
 npm i @hapi/joi
-npm i joi-assert
 ```
 
 * Em um terminal execute o comando abaixo para abrir o cypress:
