@@ -4,13 +4,21 @@
   "description": "Teste de api utilizando Cypress + Joi",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cypress run",
+    "report": "npx marge mochawesome-report/json/mochawesome.json --autoOpen",
+    "clean-report": "rm -rf mochawesome-report"
   },
   "keywords": [],
   "author": "Maximiliano Alves da Cruz",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "@hapi/joi": "^17.1.1",
-    "cypress": "^4.3.0"
+    "cypress": "^4.3.0",
+    "mocha": "^7.1.1",
+    "mochawesome": "^6.0.0",
+    "mochawesome-merge": "^4.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

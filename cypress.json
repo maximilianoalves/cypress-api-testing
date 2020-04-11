@@ -1,4 +1,11 @@
 {
     "baseUrl": "https://pokeapi.co/api/v2",
-    "video": false
+    "video": false,
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "reportDir": "mochawesome-report/json",
+        "overwrite": true,
+        "html": false,
+        "json": true
+    }
 }
