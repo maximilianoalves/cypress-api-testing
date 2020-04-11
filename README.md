@@ -34,9 +34,22 @@ Projeto de exemplo para realização de testes de serviço utilizando o Cypress 
 ### Executar este projeto em sua maquina
 
 * Em um terminal, dentro da pasta do projeto, execute o seguinte comando:
+
+**Instalar as dependências:**  
 ```
 npm i
-cypress open
+```
+**Rodar os testes:**  
+```
+npm run test
+```
+**Gerar o report e abrir no navegador:**  
+```
+npm run report
+```
+**Apagar os arquivos gerados para o report:**  
+```
+npm run clean-report
 ```
 
 Após, é somente executar os testes.
