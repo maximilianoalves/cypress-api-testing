@@ -52,8 +52,6 @@ npm run report
 npm run clean-report
 ```
 
-Após, é somente executar os testes.
-
 ### Tutorial para iniciar um novo projeto utilizando está estrutura
 
 * Dentro da pasta especifica para o projeto:
