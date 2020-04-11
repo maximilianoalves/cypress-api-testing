@@ -61,8 +61,15 @@ npm init -y
 
 * Instalar a última versão do cypress, Joi e joiAssert:
 ```
-npm i cypress
-npm i @hapi/joi
+npm i cypress -D
+npm i @hapi/joi -D
+```
+* Somente para o report:  
+```
+npm i mocha -D
+npm i mochawesome -D
+npm i react -D
+npm i react-dom -D
 ```
 
 * Em um terminal execute o comando abaixo para abrir o cypress:
