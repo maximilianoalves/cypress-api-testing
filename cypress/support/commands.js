@@ -23,3 +23,8 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add("getFistBookingId", () => {
+    cy.request('GET','/booking').then((response) => {
+        Cypress.env('firstBookingId', response.body[0].bookingid)
+    })
+})

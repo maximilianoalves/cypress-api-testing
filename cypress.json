@@ -1,5 +1,5 @@
 {
-    "baseUrl": "https://pokeapi.co/api/v2",
+    "baseUrl": "https://treinamento-api.herokuapp.com/",
     "video": false,
     "reporter": "mochawesome",
     "reporterOptions": {
