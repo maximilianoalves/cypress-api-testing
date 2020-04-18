@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "report": "npx marge mochawesome-report/json/mochawesome.json --autoOpen",
+    "cypress:report": "npx mochawesome-merge ./mochawesome-report/json/mochawesome*.json  > mochawesome-report/report.json && npx marge mochawesome-report/report.json --autoOpen",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "cypress:run": "./node_modules/.bin/cypress run",
     "clean-report": "rm -rf mochawesome-report"
   },
   "keywords": [],
@@ -14,7 +16,7 @@
   "dependencies": {},
   "devDependencies": {
     "@hapi/joi": "^17.1.1",
-    "cypress": "^4.1.0",
+    "cypress": "^4.4.0",
     "mocha": "^7.1.1",
     "mochawesome": "^6.0.0",
     "react": "^16.13.1",

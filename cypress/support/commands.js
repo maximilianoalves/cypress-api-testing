@@ -28,3 +28,45 @@ Cypress.Commands.add("getFistBookingId", () => {
         Cypress.env('firstBookingId', response.body[0].bookingid)
     })
 })
+
+Cypress.Commands.add("token", () => {
+    cy.request({
+        method: "POST",
+        failOnStatusCode: false,
+        url: '/auth',
+        headers: {
+            accept: "application/json"
+        },
+        body: {
+            "username" : "admin",
+            "password" : "password123"
+        }
+    }).then((response) => {
+        Cypress.env('token', response.body.token)
+    })
+})
+
+Cypress.Commands.add("getBookingIdCreated", () => {
+    cy.request({
+        method: "POST",
+        failOnStatusCode: false,
+        url: `/booking/`,
+        headers: {
+            accept: "application/json"
+        },
+        body: {
+            "firstname": "Maximiliano",
+            "lastname": "alves da cruz",
+            "totalprice": 111,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": "2018-01-01",
+                "checkout": "2019-01-01"
+            },
+            "additionalneeds": "Breakfast"
+        }
+    }).then((response) => {
+        Cypress.env('bookingIdCreated', response.body.bookingid)
+        console.log("commands", Cypress.env('bookingIdCreated'))
+    }).as('max')
+})

@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-const specificBookingSchema = Joi.object({
+const bookingSchema = Joi.object({
     firstname: Joi.string(),
     lastname: Joi.string(),
     totalprice: Joi.number(),
@@ -8,7 +8,8 @@ const specificBookingSchema = Joi.object({
     bookingdates: Joi.object({
         checkin: Joi.string(),
         checkout: Joi.string()
-    })
+    }),
+    additionalneeds: Joi.string()
 })
 
-export default specificBookingSchema;
+export default bookingSchema;
