@@ -1,13 +1,18 @@
 /// <reference types="cypress" />
 
 describe('Validar se a reserva foi excluida', () => {
-    beforeEach(() => {
-        cy.getBookingIdCreated()
-        console.log("spec", Cypress.env('bookingIdCreated'))
+    let bookingIdCreated = null
 
+    before(() => {
+        cy.getBookingIdCreated().then((res) => {
+            bookingIdCreated = res.body.bookingid
+        })
+    }); 
+
+    beforeEach(() => {
         cy.request({
             method: "DELETE",
-            url: "/booking/"+Cypress.env('bookingIdCreated'),
+            url: `/booking/${bookingIdCreated}`,
             failOnStatusCode: false,
             headers: {
                 accept: "application/json",

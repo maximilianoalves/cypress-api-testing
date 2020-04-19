@@ -8,7 +8,7 @@
     "cypress:report": "npx mochawesome-merge ./mochawesome-report/json/mochawesome*.json  > mochawesome-report/report.json && npx marge mochawesome-report/report.json --autoOpen",
     "cypress:open": "./node_modules/.bin/cypress open",
     "cypress:run": "./node_modules/.bin/cypress run",
-    "clean-report": "rm -rf mochawesome-report"
+    "cypress:clean-report": "rm -rf mochawesome-report"
   },
   "keywords": [],
   "author": "Maximiliano Alves da Cruz",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "@hapi/joi": "^17.1.1",
     "cypress": "^4.4.0",
+    "cypress-select-tests": "^1.5.4",
     "mocha": "^7.1.1",
     "mochawesome": "^6.0.0",
     "react": "^16.13.1",

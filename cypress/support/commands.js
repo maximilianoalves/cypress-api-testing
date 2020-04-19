@@ -23,9 +23,13 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-Cypress.Commands.add("getFistBookingId", () => {
-    cy.request('GET','/booking').then((response) => {
-        Cypress.env('firstBookingId', response.body[0].bookingid)
+Cypress.Commands.add("getFirstBookingId", () => {
+    cy.request({method: 'GET',
+        url: '/booking',
+        failOnStatusCode: false,
+        headers: {
+            accept: "application/json"
+        }
     })
 })
 
@@ -41,8 +45,6 @@ Cypress.Commands.add("token", () => {
             "username" : "admin",
             "password" : "password123"
         }
-    }).then((response) => {
-        Cypress.env('token', response.body.token)
     })
 })
 
@@ -65,8 +67,5 @@ Cypress.Commands.add("getBookingIdCreated", () => {
             },
             "additionalneeds": "Breakfast"
         }
-    }).then((response) => {
-        Cypress.env('bookingIdCreated', response.body.bookingid)
-        console.log("commands", Cypress.env('bookingIdCreated'))
-    }).as('max')
+    })
 })

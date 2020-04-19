@@ -1,4 +1,4 @@
-describe('Criar uma nova reserva', () => {
+describe('Criar uma nova reserva - @acceptance', () => {
     beforeEach(() => {
         cy.request({
             method: "POST",
@@ -28,7 +28,7 @@ describe('Criar uma nova reserva', () => {
     })
 });
 
-describe('Validar retorno 500 quando o payload da reserva estiver inválido', () => {
+describe('Validar retorno 500 quando o payload da reserva estiver inválido - @e2e', () => {
     beforeEach(() => {
         cy.request({
             method: "POST",
@@ -58,7 +58,7 @@ describe('Validar retorno 500 quando o payload da reserva estiver inválido', ()
     })
 });
 
-describe('Validar a criacao de mais de um livro em sequencia', () => {
+describe('Validar a criacao de mais de um livro em sequencia - @e2e', () => {
     beforeEach(() => {
         cy.request({
             method: "POST",
@@ -115,7 +115,7 @@ describe('Validar a criacao de mais de um livro em sequencia', () => {
     })
 });
 
-describe('Criar uma reserva enviando mais parametros no payload da reserva', () => {
+describe('Criar uma reserva enviando mais parametros no payload da reserva - @e2e', () => {
     beforeEach(() => {
         cy.request({
             method: "POST",
@@ -145,7 +145,7 @@ describe('Criar uma reserva enviando mais parametros no payload da reserva', () 
     })
 });
 
-describe('Validar retorno 418 quando o header Accept for invalido', () => {
+describe('Validar retorno 418 quando o header Accept for invalido - @e2e', () => {
     beforeEach(() => {
         cy.request({
             method: "POST",

@@ -1,6 +1,22 @@
 import bookingIdsSchema from '../../contracts/bookingIds.contract'
 
-describe('Listar IDs das reservas', () => {
+describe('Garantir o contrato do retorno da lista de reservas - @contract', () => {
+    beforeEach(() => {
+        cy.request({
+            method: 'GET',
+            url: '/booking',
+            failOnStatusCode: false
+        }).as('allBookings')
+    });
+
+    it('Validar o contrato',() => {
+        cy.get('@allBookings').should((response) => {
+            return bookingIdsSchema.validateAsync(response.body)
+        })
+    })
+})
+
+describe('Listar IDs das reservas - @acceptance', () => {
     beforeEach(() => {
         cy.request({
             method: 'GET',
@@ -22,7 +38,7 @@ describe('Listar IDs das reservas', () => {
     })
 })
 
-describe('Listar IDs de reservas utilizando o filtro firstname', () => {
+describe('Listar IDs de reservas utilizando o filtro firstname - @acceptance', () => {
     beforeEach(() => {
         cy.request('GET','/booking?firstname=Mary').as('allBookingsByFirstname')
     });
@@ -35,7 +51,7 @@ describe('Listar IDs de reservas utilizando o filtro firstname', () => {
     })
 });
 
-describe('Listar IDs de reservas utilizando o filtro lastname', () => {
+describe('Listar IDs de reservas utilizando o filtro lastname - @acceptance', () => {
     beforeEach(() => {
         cy.request('GET','/booking?firstname=Ericsson').as('allBookingsByLastname')
     }); 
@@ -48,7 +64,7 @@ describe('Listar IDs de reservas utilizando o filtro lastname', () => {
     })
 });
 
-describe('Listar IDs de reservas utilizando o filtro checkin', () => {
+describe('Listar IDs de reservas utilizando o filtro checkin - @acceptance', () => {
     beforeEach(() => {
         cy.request('GET','/booking?checkin=2015-06-21').as('allBookingsByCheckin')
     }); 
@@ -60,7 +76,7 @@ describe('Listar IDs de reservas utilizando o filtro checkin', () => {
     })
 });
 
-describe('Listar IDs de reservas utilizando o filtro checkout', () => {
+describe('Listar IDs de reservas utilizando o filtro checkout - @acceptance', () => {
     beforeEach(() => {
         cy.request({
             method: 'GET',
@@ -76,7 +92,7 @@ describe('Listar IDs de reservas utilizando o filtro checkout', () => {
     })
 });
 
-describe('Listar IDs de reservas utilizando o filtro checkout and checkout', () => {
+describe('Listar IDs de reservas utilizando o filtro checkout and checkout - @acceptance', () => {
     beforeEach(() => {
         cy.request({
             method: 'GET',
@@ -92,7 +108,7 @@ describe('Listar IDs de reservas utilizando o filtro checkout and checkout', () 
     })
 });
 
-describe('Listar IDs de reservas utilizando o filtro name, checkin and checkout date', () => {
+describe('Listar IDs de reservas utilizando o filtro name, checkin and checkout date - @acceptance', () => {
     beforeEach(() => {
         cy.request('GET','/booking?heckout=2016-12-10&checkin=2015-06-21&name=Eric').as('allBookingsByCheckoutAndCheckinAndName')
     }); 
@@ -104,7 +120,7 @@ describe('Listar IDs de reservas utilizando o filtro name, checkin and checkout 
     })
 });
 
-describe('Visualizar erro de servidor 500 quando enviar filtro mal formatado', () => {
+describe('Visualizar erro de servidor 500 quando enviar filtro mal formatado - @e2e', () => {
     beforeEach(() => {
         cy.request({
             method: 'GET',

@@ -1,20 +1,41 @@
 import bookingSchema from '../../contracts/booking.contract'
 
-describe('Testes para buscar uma reserva especifica', () => {
+describe('Garantir o contrato do retorno de uma reserva específica - @contract', () => {
+    let firstBookingId = null
+
+    before(() => {
+        cy.getFirstBookingId().then((res) => {
+            firstBookingId = res.body[0].bookingid
+        })
+    });
+
     beforeEach(() => {
-        cy.request('GET','/booking/1').as('booking')
+        cy.request('GET','/booking/'+firstBookingId).as('booking')
+    });
+
+    it('Validar o contrato',() => {
+        cy.get('@booking').should((response) => {
+            return bookingSchema.validateAsync(response.body)
+        })
+    })
+})
+
+describe('Listar uma reserva especifica - @acceptance', () => {
+    let firstBookingId = null
+
+    before(() => {
+        cy.getFirstBookingId().then((res) => {
+            firstBookingId = res.body[0].bookingid
+        })
+    });
+
+    beforeEach(() => {
+        cy.request('GET','/booking/'+firstBookingId).as('booking')
     });
 
     it('Health check de uma reserva espefico', () => {
         cy.get('@booking').should((response) => {
             expect(response.status).to.eq(200)
-        })
-    })
-
-    it('Validar o contrato de uma reserva especifica @contract',() => {
-        cy.get('@booking').should((response) => {
-            console.log(response.body)
-            return bookingSchema.validateAsync(response.body)
         })
     })
 })

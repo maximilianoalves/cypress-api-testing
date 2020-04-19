@@ -1,15 +1,24 @@
-describe('Alterar uma reserva somente utilizando o token', () => {
-    beforeEach(() => {
-        cy.getFistBookingId()
-        cy.token()
+describe('Alterar uma reserva somente utilizando o token - @acceptance', () => {
+    let token = null
+    let firstBookingId = null
 
+    before(() => {
+        cy.token().then((res) => {
+            token = res.body.token
+        })
+        cy.getFirstBookingId().then((res) => {
+            firstBookingId = res.body[0].bookingid
+        })
+    });
+
+    beforeEach(() => {
         cy.request({
             method: "PUT",
             failOnStatusCode: false,
-            url: '/booking/'+Cypress.env('firstBookingId'),
+            url: '/booking/'+firstBookingId,
             headers: {
                 accept: "application/json",
-                Cookie: "token="+Cypress.env('token')
+                Cookie: "token="+token
             },
             body: {
                 "firstname": "Maximiliano",
@@ -32,13 +41,19 @@ describe('Alterar uma reserva somente utilizando o token', () => {
     })
 });
 
-describe('Alterar uma reserva somente utilizando Basic do Authorization', () => {
-    beforeEach(() => {
-        cy.getFistBookingId()
+describe('Alterar uma reserva somente utilizando Basic do Authorization - @acceptance', () => {
+    let firstBookingId = null
 
+    before(() => {
+        cy.getFirstBookingId().then((res) => {
+            firstBookingId = res.body[0].bookingid
+        })
+    });
+
+    beforeEach(() => {
         cy.request({
             method: "PUT",
-            url: '/booking/'+Cypress.env('firstBookingId'),
+            url: '/booking/'+firstBookingId,
             headers: {
                 accept: "application/json",
                 Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM="
@@ -64,14 +79,20 @@ describe('Alterar uma reserva somente utilizando Basic do Authorization', () => 
     })
 });
 
-describe('Tentar alterar uma reserva quando o token não for enviado', () => {
-    beforeEach(() => {
-        cy.getFistBookingId()
+describe('Tentar alterar uma reserva quando o token não for enviado - @e2e', () => {
+    let firstBookingId = null
 
+    before(() => {
+        cy.getFirstBookingId().then((res) => {
+            firstBookingId = res.body[0].bookingid
+        })
+    })
+
+    beforeEach(() => {
         cy.request({
             method: "PUT",
             failOnStatusCode: false,
-            url: '/booking/'+Cypress.env('firstBookingId'),
+            url: '/booking/'+firstBookingId,
             headers: {
                 accept: "application/json",
             },
@@ -96,14 +117,20 @@ describe('Tentar alterar uma reserva quando o token não for enviado', () => {
     })
 });
 
-describe('Tentar alterar uma reserva quando o token enviado for inválido', () => {
-    beforeEach(() => {
-        cy.getFistBookingId()
+describe('Tentar alterar uma reserva quando o token enviado for inválido - @e2e', () => {
+    let firstBookingId = null
 
+    before(() => {
+        cy.getFirstBookingId().then((res) => {
+            firstBookingId = res.body[0].bookingid
+        })
+    })
+
+    beforeEach(() => {
         cy.request({
             method: "PUT",
             failOnStatusCode: false,
-            url: '/booking/'+Cypress.env('firstBookingId'),
+            url: '/booking/'+firstBookingId,
             headers: {
                 accept: "application/json",
                 Authorization: "Basic blablablablabla="
@@ -129,18 +156,23 @@ describe('Tentar alterar uma reserva quando o token enviado for inválido', () =
     })
 });
 
-describe('Tentar alterar uma reserva que não existe', () => {
-    beforeEach(() => {
-        cy.getFistBookingId()
-        cy.token()
+describe('Tentar alterar uma reserva que não existe - @e2e', () => {
+    let token = null
 
+    before(() => {
+        cy.token().then((res) => {
+            token = res.body.token
+        })
+    });
+
+    beforeEach(() => {
         cy.request({
             method: "PUT",
             failOnStatusCode: false,
             url: '/booking/999',
             headers: {
                 accept: "application/json",
-                Cookie: "token="+Cypress.env('token')
+                Cookie: "token="+token
             },
             body: {
                 "firstname": "Maximiliano",

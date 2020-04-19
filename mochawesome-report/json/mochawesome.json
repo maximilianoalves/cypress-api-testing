@@ -5,9 +5,9 @@
     "passes": 6,
     "pending": 0,
     "failures": 0,
-    "start": "2020-04-18T18:25:30.187Z",
-    "end": "2020-04-18T18:25:32.334Z",
-    "duration": 2147,
+    "start": "2020-04-19T17:23:38.749Z",
+    "end": "2020-04-19T17:23:40.855Z",
+    "duration": 2106,
     "testsRegistered": 6,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "0bc41459-35a4-4093-abc2-ee4df55b45fa",
+      "uuid": "b172f8df-b2c8-4ae4-9880-e975f7f6a1fa",
       "title": "",
       "fullFile": "cypress/integration/services/CreateBooking.spec.js",
       "file": "cypress/integration/services/CreateBooking.spec.js",
@@ -27,8 +27,8 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "75a91721-3b78-4fc4-98ac-0720afd59d69",
-          "title": "Criar uma nova reserva",
+          "uuid": "6c444ebc-a850-4cb7-ac43-55abdf638c79",
+          "title": "Criar uma nova reserva - @acceptance",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
@@ -36,38 +36,38 @@
           "tests": [
             {
               "title": "Validar se o livro foi criado",
-              "fullTitle": "Criar uma nova reserva Validar se o livro foi criado",
+              "fullTitle": "Criar uma nova reserva - @acceptance Validar se o livro foi criado",
               "timedOut": null,
-              "duration": 857,
+              "duration": 858,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('@createBooking').should(function (response) {\n    expect(response.status).to.eq(200);\n    expect(response.body.bookingid).to.be.not.null;\n});",
+              "code": "cy.get('@createBooking').should(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response.body.bookingid).to.be.not[\"null\"];\n});",
               "err": {},
-              "uuid": "3b908b20-ec95-44ed-80ae-d54c1e6da6be",
-              "parentUUID": "75a91721-3b78-4fc4-98ac-0720afd59d69",
+              "uuid": "e9873dec-6deb-47c3-87c4-ad1171f2e543",
+              "parentUUID": "6c444ebc-a850-4cb7-ac43-55abdf638c79",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "3b908b20-ec95-44ed-80ae-d54c1e6da6be"
+            "e9873dec-6deb-47c3-87c4-ad1171f2e543"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 857,
+          "duration": 858,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "32f2c954-0bc9-43bc-8752-8466d76da060",
-          "title": "Validar retorno 500 quando o payload da reserva estiver inválido",
+          "uuid": "db065f87-f3a2-4e4a-be56-e34c1feb307e",
+          "title": "Validar retorno 500 quando o payload da reserva estiver inválido - @e2e",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
@@ -75,38 +75,38 @@
           "tests": [
             {
               "title": "Validar status code - 500 ",
-              "fullTitle": "Validar retorno 500 quando o payload da reserva estiver inválido Validar status code - 500 ",
+              "fullTitle": "Validar retorno 500 quando o payload da reserva estiver inválido - @e2e Validar status code - 500 ",
               "timedOut": null,
-              "duration": 186,
+              "duration": 178,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('@createBookingInvalidPayload').should(function (response) {\n    expect(response.status).to.eq(500);\n});",
+              "code": "cy.get('@createBookingInvalidPayload').should(function (response) {\n  expect(response.status).to.eq(500);\n});",
               "err": {},
-              "uuid": "19c1fbe9-50ba-420a-a77b-f876acebec56",
-              "parentUUID": "32f2c954-0bc9-43bc-8752-8466d76da060",
+              "uuid": "53fc6d4b-87e1-469d-9f27-d48378732bb9",
+              "parentUUID": "db065f87-f3a2-4e4a-be56-e34c1feb307e",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "19c1fbe9-50ba-420a-a77b-f876acebec56"
+            "53fc6d4b-87e1-469d-9f27-d48378732bb9"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 186,
+          "duration": 178,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "78c7b094-a297-46bf-bc9f-9336c31f7955",
-          "title": "Validar a criacao de mais de um livro em sequencia",
+          "uuid": "391163cf-f921-4c75-9a08-b4e8f90c3a39",
+          "title": "Validar a criacao de mais de um livro em sequencia - @e2e",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
@@ -114,57 +114,57 @@
           "tests": [
             {
               "title": "Validar se o primeiro livro foi criado",
-              "fullTitle": "Validar a criacao de mais de um livro em sequencia Validar se o primeiro livro foi criado",
+              "fullTitle": "Validar a criacao de mais de um livro em sequencia - @e2e Validar se o primeiro livro foi criado",
               "timedOut": null,
-              "duration": 356,
+              "duration": 342,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('@createBookingOne').should(function (response) {\n    expect(response.status).to.eq(200);\n    expect(response.body.bookingid).to.be.not.null;\n});",
+              "code": "cy.get('@createBookingOne').should(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response.body.bookingid).to.be.not[\"null\"];\n});",
               "err": {},
-              "uuid": "19e29097-8cb6-413b-b973-eca0d55187de",
-              "parentUUID": "78c7b094-a297-46bf-bc9f-9336c31f7955",
+              "uuid": "4f880ea4-0431-4961-a7b4-57385de95d8a",
+              "parentUUID": "391163cf-f921-4c75-9a08-b4e8f90c3a39",
               "isHook": false,
               "skipped": false
             },
             {
               "title": "Validar se o segundo livro foi criado",
-              "fullTitle": "Validar a criacao de mais de um livro em sequencia Validar se o segundo livro foi criado",
+              "fullTitle": "Validar a criacao de mais de um livro em sequencia - @e2e Validar se o segundo livro foi criado",
               "timedOut": null,
-              "duration": 354,
+              "duration": 343,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('@createBookingTwo').should(function (response) {\n    expect(response.status).to.eq(200);\n    expect(response.body.bookingid).to.be.not.null;\n});",
+              "code": "cy.get('@createBookingTwo').should(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response.body.bookingid).to.be.not[\"null\"];\n});",
               "err": {},
-              "uuid": "c719fc4c-abc1-421b-bbba-0fd7d001426c",
-              "parentUUID": "78c7b094-a297-46bf-bc9f-9336c31f7955",
+              "uuid": "d36a5704-95b8-4143-a08d-fe7b853a6c2d",
+              "parentUUID": "391163cf-f921-4c75-9a08-b4e8f90c3a39",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "19e29097-8cb6-413b-b973-eca0d55187de",
-            "c719fc4c-abc1-421b-bbba-0fd7d001426c"
+            "4f880ea4-0431-4961-a7b4-57385de95d8a",
+            "d36a5704-95b8-4143-a08d-fe7b853a6c2d"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 710,
+          "duration": 685,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "8e6ece02-59c8-4dec-9175-65dd19885320",
-          "title": "Criar uma reserva enviando mais parametros no payload da reserva",
+          "uuid": "82f3f483-e92a-463b-9d8e-9ea094c92563",
+          "title": "Criar uma reserva enviando mais parametros no payload da reserva - @e2e",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
@@ -172,38 +172,38 @@
           "tests": [
             {
               "title": "Validar status code - 200",
-              "fullTitle": "Criar uma reserva enviando mais parametros no payload da reserva Validar status code - 200",
+              "fullTitle": "Criar uma reserva enviando mais parametros no payload da reserva - @e2e Validar status code - 200",
               "timedOut": null,
-              "duration": 175,
+              "duration": 176,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('@createBookingMoreFieldsPayload').should(function (response) {\n    expect(response.status).to.eq(200);\n});",
+              "code": "cy.get('@createBookingMoreFieldsPayload').should(function (response) {\n  expect(response.status).to.eq(200);\n});",
               "err": {},
-              "uuid": "5537f13f-d1ea-494a-a27f-388b4b28f626",
-              "parentUUID": "8e6ece02-59c8-4dec-9175-65dd19885320",
+              "uuid": "46e3d1e1-e6a8-4d58-9874-83dea6988d57",
+              "parentUUID": "82f3f483-e92a-463b-9d8e-9ea094c92563",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "5537f13f-d1ea-494a-a27f-388b4b28f626"
+            "46e3d1e1-e6a8-4d58-9874-83dea6988d57"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 175,
+          "duration": 176,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
         },
         {
-          "uuid": "0e5fe551-10f4-4462-b678-3d9837a4379f",
-          "title": "Validar retorno 418 quando o header Accept for invalido",
+          "uuid": "0eb4062a-8ee8-419b-98ee-c822a60fc59d",
+          "title": "Validar retorno 418 quando o header Accept for invalido - @e2e",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
@@ -211,31 +211,31 @@
           "tests": [
             {
               "title": "Validar status code - 418",
-              "fullTitle": "Validar retorno 418 quando o header Accept for invalido Validar status code - 418",
+              "fullTitle": "Validar retorno 418 quando o header Accept for invalido - @e2e Validar status code - 418",
               "timedOut": null,
-              "duration": 191,
+              "duration": 180,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.get('@createBookingMoreFieldsPayload').should(function (response) {\n    expect(response.status).to.eq(418);\n});",
+              "code": "cy.get('@createBookingMoreFieldsPayload').should(function (response) {\n  expect(response.status).to.eq(418);\n});",
               "err": {},
-              "uuid": "80ba993f-06cd-44ea-bf5c-c3495b21e0e6",
-              "parentUUID": "0e5fe551-10f4-4462-b678-3d9837a4379f",
+              "uuid": "884d4681-7a1e-44ac-95e7-ddced694f109",
+              "parentUUID": "0eb4062a-8ee8-419b-98ee-c822a60fc59d",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "80ba993f-06cd-44ea-bf5c-c3495b21e0e6"
+            "884d4681-7a1e-44ac-95e7-ddced694f109"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 191,
+          "duration": 180,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

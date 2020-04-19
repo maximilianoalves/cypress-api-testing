@@ -83,3 +83,10 @@ cypress open
 ```
 npx cypress open
 ```
+
+### Suites
+
+* Rodar filtrando por suítes:
+```
+npm run cypress:run -- --env grep=@e2e
+```

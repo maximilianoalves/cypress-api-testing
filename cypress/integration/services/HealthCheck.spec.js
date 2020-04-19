@@ -1,4 +1,4 @@
-describe('Testes para validar que a api está online', () => {
+describe('Verificar se API está online - @health_check', () => {
     beforeEach(() => {
         cy.request('GET','/ping').as('healthcheck')
     });
