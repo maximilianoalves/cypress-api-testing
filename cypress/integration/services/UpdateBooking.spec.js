@@ -1,196 +1,44 @@
-describe('Alterar uma reserva somente utilizando o token - @acceptance', () => {
-    let token = null
-    let firstBookingId = null
+describe('Put Booking', () => {
 
-    before(() => {
-        cy.token().then((res) => {
-            token = res.body.token
-        })
-        cy.getFirstBookingId().then((res) => {
-            firstBookingId = res.body[0].bookingid
-        })
-    });
-
-    beforeEach(() => {
-        cy.request({
-            method: "PUT",
-            failOnStatusCode: false,
-            url: '/booking/'+firstBookingId,
-            headers: {
-                accept: "application/json",
-                Cookie: "token="+token
-            },
-            body: {
-                "firstname": "Maximiliano",
-                "lastname": "alves da cruz",
-                "totalprice": 111,
-                "depositpaid": true,
-                "bookingdates": {
-                    "checkin": "2018-01-01",
-                    "checkout": "2019-01-01"
-                },
-                "additionalneeds": "Breakfast"
-            }
-        }).as('updateBooking')
-    });
-
-    it('Validar status code - 200', () => {
-        cy.get('@updateBooking').should((response) => {
-            expect(response.status).to.eq(200)
-        })
-    })
-});
-
-describe('Alterar uma reserva somente utilizando Basic do Authorization - @acceptance', () => {
-    let firstBookingId = null
-
-    before(() => {
-        cy.getFirstBookingId().then((res) => {
-            firstBookingId = res.body[0].bookingid
-        })
-    });
-
-    beforeEach(() => {
-        cy.request({
-            method: "PUT",
-            url: '/booking/'+firstBookingId,
-            headers: {
-                accept: "application/json",
-                Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM="
-            },
-            body: {
-                "firstname": "Maximiliano",
-                "lastname": "alves da cruz",
-                "totalprice": 111,
-                "depositpaid": true,
-                "bookingdates": {
-                    "checkin": "2018-01-01",
-                    "checkout": "2019-01-01"
-                },
-                "additionalneeds": "Breakfast"
-            }
-        }).as('updateBooking')
-    });
-
-    it('Validar status code - 200', () => {
-        cy.get('@updateBooking').should((response) => {
-            expect(response.status).to.eq(200)
-        })
-    })
-});
-
-describe('Tentar alterar uma reserva quando o token não for enviado - @e2e', () => {
-    let firstBookingId = null
-
-    before(() => {
-        cy.getFirstBookingId().then((res) => {
-            firstBookingId = res.body[0].bookingid
+    it('Alterar uma reserva somente utilizando o token - @acceptance', () => {
+        cy.token().then((resToken) => {
+            cy.allBookings().then((resAllBooking) => {
+                cy.updateBookingWithToken(resAllBooking.body[0].bookingid, resToken.body.token).then((response) => {
+                    expect(response.status).to.eq(200)
+                })
+            })
         })
     })
 
-    beforeEach(() => {
-        cy.request({
-            method: "PUT",
-            failOnStatusCode: false,
-            url: '/booking/'+firstBookingId,
-            headers: {
-                accept: "application/json",
-            },
-            body: {
-                "firstname": "Maximiliano",
-                "lastname": "alves da cruz",
-                "totalprice": 111,
-                "depositpaid": true,
-                "bookingdates": {
-                    "checkin": "2018-01-01",
-                    "checkout": "2019-01-01"
-                },
-                "additionalneeds": "Breakfast"
-            }
-        }).as('updateBooking')
+    it('Alterar uma reserva somente utilizando Basic do Authorization - @acceptance', () => {
+        cy.allBookings().then((resAllBooking) => {
+            cy.updateBookingWithBasic(resAllBooking.body[0].bookingid).then((response) => {
+                expect(response.status).to.eq(200)
+            })
+        })
     });
 
-    it('Validar status code - 403', () => {
-        cy.get('@updateBooking').should((response) => {
-            expect(response.status).to.eq(403)
-        })
-    })
-});
-
-describe('Tentar alterar uma reserva quando o token enviado for inválido - @e2e', () => {
-    let firstBookingId = null
-
-    before(() => {
-        cy.getFirstBookingId().then((res) => {
-            firstBookingId = res.body[0].bookingid
+    it('Tentar alterar uma reserva quando o token não for enviado - @e2e', () => {
+        cy.allBookings().then((resAllBooking) => {
+            cy.updateBookingWithToken(resAllBooking.body[0].bookingid, "").then((response) => {
+                expect(response.status).to.eq(403)
+            })
         })
     })
 
-    beforeEach(() => {
-        cy.request({
-            method: "PUT",
-            failOnStatusCode: false,
-            url: '/booking/'+firstBookingId,
-            headers: {
-                accept: "application/json",
-                Authorization: "Basic blablablablabla="
-            },
-            body: {
-                "firstname": "Maximiliano",
-                "lastname": "alves da cruz",
-                "totalprice": 111,
-                "depositpaid": true,
-                "bookingdates": {
-                    "checkin": "2018-01-01",
-                    "checkout": "2019-01-01"
-                },
-                "additionalneeds": "Breakfast"
-            }
-        }).as('updateBooking')
-    });
-
-    it('Validar status code - 403', () => {
-        cy.get('@updateBooking').should((response) => {
-            expect(response.status).to.eq(403)
+    it('Tentar alterar uma reserva quando o token enviado for inválido - @e2e', () => {
+        cy.allBookings().then((resAllBooking) => {
+            cy.updateBookingWithToken(resAllBooking.body[0].bookingid, "bla bla bla").then((response) => {
+                expect(response.status).to.eq(403)
+            })
         })
     })
-});
 
-describe('Tentar alterar uma reserva que não existe - @e2e', () => {
-    let token = null
-
-    before(() => {
-        cy.token().then((res) => {
-            token = res.body.token
-        })
-    });
-
-    beforeEach(() => {
-        cy.request({
-            method: "PUT",
-            failOnStatusCode: false,
-            url: '/booking/999',
-            headers: {
-                accept: "application/json",
-                Cookie: "token="+token
-            },
-            body: {
-                "firstname": "Maximiliano",
-                "lastname": "alves da cruz",
-                "totalprice": 111,
-                "depositpaid": true,
-                "bookingdates": {
-                    "checkin": "2018-01-01",
-                    "checkout": "2019-01-01"
-                },
-                "additionalneeds": "Breakfast"
-            }
-        }).as('updateBooking')
-    });
-
-    it('Validar status code - 405', () => {
-        cy.get('@updateBooking').should((response) => {
-            expect(response.status).to.eq(405)
+    it('Tentar alterar uma reserva que não existe - @e2e', () => {
+        cy.token().then((resToken) => {
+            cy.updateBookingWithToken(5000, resToken.body.token).then((response) => {
+                expect(response.status).to.eq(405)
+            })
         })
     })
 });

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "cypress:report": "npx mochawesome-merge ./mochawesome-report/json/mochawesome*.json  > mochawesome-report/report.json && npx marge mochawesome-report/report.json --autoOpen",
+    "cypress:report": "npx mochawesome-merge ./mochawesome-report/json/mochawesome*.json  > mochawesome-report/report.json && npx marge mochawesome-report/report.json --autoOpen --showPending=false",
     "cypress:open": "./node_modules/.bin/cypress open",
     "cypress:run": "./node_modules/.bin/cypress run",
     "cypress:clean-report": "rm -rf mochawesome-report"

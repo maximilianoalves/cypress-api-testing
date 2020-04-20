@@ -1,50 +1,23 @@
 /// <reference types="cypress" />
 
-describe('Validar se a reserva foi excluida', () => {
-    let bookingIdCreated = null
-
-    before(() => {
-        cy.getBookingIdCreated().then((res) => {
-            bookingIdCreated = res.body.bookingid
+describe('Delete Booking', () => {
+    it('Excluir um reserva com sucesso - @acceptance', () => {
+        cy.createBooking().then((resCreateBooking) => {
+            cy.deleteBooking(resCreateBooking.body.bookingid, 'Basic YWRtaW46cGFzc3dvcmQxMjM=').should((response) => {
+                expect(response.status).to.eq(201)
+            })
         })
-    }); 
+    })
 
-    beforeEach(() => {
-        cy.request({
-            method: "DELETE",
-            url: `/booking/${bookingIdCreated}`,
-            failOnStatusCode: false,
-            headers: {
-                accept: "application/json",
-                Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM="
-            }
-        }).as('deleteBooking')
+    it('Tentar excluir uma reserva que não existe - @e2e', () => {
+        cy.deleteBooking(999, 'Basic YWRtaW46cGFzc3dvcmQxMjM=').should((response) => {
+            expect(response.status).to.eq(405)
+        })
+    })
 
-    });
-
-    it('Validar status code - 201', () => {
-        cy.get('@deleteBooking').should((response) => {
-            expect(response.status).to.eq(201)
+    it('Tentar excluir uma reserva sem autorização - @e2e', () => {
+        cy.deleteBooking(999, 'Basic bla bla bla').should((response) => {
+            expect(response.status).to.eq(403)
         })
     })
 })
-
-describe('Tentar excluir uma reserva que não existe', () => {
-    beforeEach(() => {
-        cy.request({
-            method: "DELETE",
-            failOnStatusCode: false,
-            url: "/booking/999",
-            headers: {
-                accept: "application/json",
-                Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM="
-            }
-        }).as('deleteBookingNotExists')
-    });
-
-    it('Validar status code - 405', () => {
-        cy.get('@deleteBookingNotExists').should((response) => {
-            expect(response.status).to.eq(405)
-        })
-    });
-});

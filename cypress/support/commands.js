@@ -33,21 +33,6 @@ Cypress.Commands.add("getFirstBookingId", () => {
     })
 })
 
-Cypress.Commands.add("token", () => {
-    cy.request({
-        method: "POST",
-        failOnStatusCode: false,
-        url: '/auth',
-        headers: {
-            accept: "application/json"
-        },
-        body: {
-            "username" : "admin",
-            "password" : "password123"
-        }
-    })
-})
-
 Cypress.Commands.add("getBookingIdCreated", () => {
     cy.request({
         method: "POST",
@@ -67,5 +52,7 @@ Cypress.Commands.add("getBookingIdCreated", () => {
             },
             "additionalneeds": "Breakfast"
         }
+    }).then((res) => {
+        Cypress.env("bookingIdCreated", res.body.bookingid)
     })
 })
