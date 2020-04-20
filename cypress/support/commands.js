@@ -23,36 +23,3 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-Cypress.Commands.add("getFirstBookingId", () => {
-    cy.request({method: 'GET',
-        url: '/booking',
-        failOnStatusCode: false,
-        headers: {
-            accept: "application/json"
-        }
-    })
-})
-
-Cypress.Commands.add("getBookingIdCreated", () => {
-    cy.request({
-        method: "POST",
-        failOnStatusCode: false,
-        url: `/booking/`,
-        headers: {
-            accept: "application/json"
-        },
-        body: {
-            "firstname": "Maximiliano",
-            "lastname": "alves da cruz",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
-    }).then((res) => {
-        Cypress.env("bookingIdCreated", res.body.bookingid)
-    })
-})
