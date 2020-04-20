@@ -4,10 +4,13 @@
   "description": "Teste de api utilizando Cypress + Joi",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run",
     "cypress:report": "npx mochawesome-merge ./mochawesome-report/json/mochawesome*.json  > mochawesome-report/report.json && npx marge mochawesome-report/report.json --autoOpen --showPending=false",
     "cypress:open": "./node_modules/.bin/cypress open",
     "cypress:run": "./node_modules/.bin/cypress run",
+    "cypress:run-e2e": "./node_modules/.bin/cypress run --env --grep=@e2e",
+    "cypress:run-acceptance": "./node_modules/.bin/cypress run --env --grep=@acceptance",
+    "cypress:run-healthcheck": "./node_modules/.bin/cypress run --env --grep=@healthcheck",
+    "cypress:run-contract": "./node_modules/.bin/cypress run --env --grep=@contract",
     "cypress:clean-report": "rm -rf mochawesome-report"
   },
   "keywords": [],
