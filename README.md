@@ -9,26 +9,6 @@ Projeto de exemplo para realização de testes de serviço utilizando o Cypress 
 
 ## Estrutura de pastas
 
-📦cypress-api-testing  
- ┣ 📂cypress  
- ┃ ┣ 📂fixtures  
- ┃ ┃ ┗ 📜example.json  
- ┃ ┣ 📂integration  
- ┃ ┃ ┗ 📂services  
- ┃ ┃ ┃ ┣ 📂contracts  
- ┃ ┃ ┃ ┃ ┗ 📜ability.contract.js  
- ┃ ┃ ┃ ┗ 📂tests  
- ┃ ┃ ┃ ┃ ┣ 📜Ability.spec.js  
- ┃ ┃ ┃ ┃ ┗ 📜Pokemon.spec.js  
- ┃ ┣ 📂plugins  
- ┃ ┃ ┗ 📜index.js  
- ┃ ┗ 📂support  
- ┃ ┃ ┣ 📜commands.js  
- ┃ ┃ ┗ 📜index.js  
- ┣ 📜README.md  
- ┣ 📜cypress.json  
- ┗ 📜package.json  
-
 ## Tutorial, Instalação e execução
 
 ### Executar este projeto em sua maquina
