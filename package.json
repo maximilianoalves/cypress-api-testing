@@ -19,8 +19,8 @@
   "dependencies": {},
   "devDependencies": {
     "@hapi/joi": "^17.1.1",
-    "cypress": "^4.4.0",
-    "cypress-select-tests": "^1.5.4",
+    "cypress": "4.9.0",
+    "cypress-select-tests": "^1.5.7",
     "mocha": "^7.1.1",
     "mochawesome": "^6.0.0",
     "react": "^16.13.1",

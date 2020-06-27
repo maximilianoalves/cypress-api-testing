@@ -1,25 +1,21 @@
+let payload = require('../payloads/create-booking.json');
+
 function createBooking() {
+    payload.firstname = "Ronaldo"
+
     return cy.request({
         method: "POST",
         url: `/booking/`,
         headers: {
             accept: "application/json"
         },
-        body: {
-            "firstname": "Maximiliano",
-            "lastname": "alves da cruz",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
+        body: payload
     })
 }
 
 function createBookingInvalidPayload() {
+    payload.firstname = 345
+
     return cy.request({
         method: "POST",
         failOnStatusCode: false,
@@ -27,43 +23,26 @@ function createBookingInvalidPayload() {
         headers: {
             accept: "application/json"
         },
-        body: {
-            "firstname": 345,
-            "lastname": "alves da cruz",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
+        body: payload
     })
 }
 
 function createBookingExtraFieldPayload() {
+
     return cy.request({
         method: "POST",
         url: `/booking/`,
         headers: {
             accept: "application/json"
         },
-        body: {
-            "firstname": "Maximiliano",
-            "apelido": "Max",
-            "lastname": "alves da cruz",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
+        body: payload
     })
 }
 
 function createBookingWithWrongHeader() {
+    let payload = require('../payloads/create-booking.json');
+    console.log(payload)
+
     return cy.request({
         method: "POST",
         failOnStatusCode: false,
@@ -71,18 +50,7 @@ function createBookingWithWrongHeader() {
         headers: {
             accept: "application/jaoaquim"
         },
-        body: {
-            "firstname": "Maximiliano",
-            "apelido": "Max",
-            "lastname": "alves da cruz",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
+        body: payload
     })
 }
 

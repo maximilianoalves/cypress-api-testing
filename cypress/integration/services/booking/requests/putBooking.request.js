@@ -1,3 +1,7 @@
+/// <reference types="cypress" />
+
+const payload = require('../payloads/create-booking.json');
+
 function updateBookingWithToken(id, token) {
     return cy.request({
         method: "PUT",
@@ -7,17 +11,7 @@ function updateBookingWithToken(id, token) {
             accept: "application/json",
             Cookie: `token=${token}`
         },
-        body: {
-            "firstname": "Ronaldo",
-            "lastname": "fenomeno",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
+        body: payload
     })
 }
 
@@ -30,17 +24,7 @@ function updateBookingWithBasic(id) {
             accept: "application/json",
             Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM="
         },
-        body: {
-            "firstname": "Ronaldo",
-            "lastname": "fenomeno",
-            "totalprice": 111,
-            "depositpaid": true,
-            "bookingdates": {
-                "checkin": "2018-01-01",
-                "checkout": "2019-01-01"
-            },
-            "additionalneeds": "Breakfast"
-        }
+        body: payload
     })
 }
 
